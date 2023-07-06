@@ -2,21 +2,16 @@ import React from "react";
 import { Select } from "antd";
 const { Option } = Select;
 
-const PathsDropdown = ({ swaggerJson, handleSelectChange }) => {
-  const paths = Object.entries(swaggerJson.paths).map(([path, value]) => ({
-    path,
-    description: value.description || "",
-  }));
-
+const PathsDropdown = ({ handleSelectChange, paths }) => {
   return (
     <Select
       mode="multiple"
       placeholder="Select the API paths you want to call/generate code"
       onChange={handleSelectChange}
     >
-      {paths.map((pathObj) => (
-        <Option key={pathObj.path} value={pathObj.path}>
-          <strong>{pathObj.path}</strong> - {pathObj.description}
+      {paths.map((path, index) => (
+        <Option key={index} value={`${path.verb}:${path.path}`}>
+          <strong>{path.path}</strong> - {path.object.summary}
         </Option>
       ))}
     </Select>

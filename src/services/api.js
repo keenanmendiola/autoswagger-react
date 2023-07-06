@@ -11,7 +11,6 @@ export const getSwaggerJsonFile = async (body) => {
 
 export const generateCode = async (body) => {
   try {
-    console.log("calling");
     const response = await axios.post(
       "http://127.0.0.1:5000/generate-code",
       body
